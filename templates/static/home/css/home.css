@@ -1,6 +1,6 @@
 @charset "UTF-8";
-#divider {
-  border-top: 1px solid #4d2182;
+.navtexts {
+  font-size: 1.125rem;
 }
 
 /*!

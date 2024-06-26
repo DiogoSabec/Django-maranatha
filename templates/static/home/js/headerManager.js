@@ -9,32 +9,32 @@ class MainHeader extends HTMLElement {
         const currentPath = window.location.pathname; // Get current path
 
         this.innerHTML = `
-        <div class="container-fluid fill bg-secondary" id="topo">
+        <div class="container-fluid fill bg-secondary" style="height: 100px; display: flex; align-items: center;" id="topo">
             <div class="container">
-                <nav class="navbar navbar-expand-md">
-                    <a href="${homeUrl}" class="d-flex align-items-bottom mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                        <img src="${logoUrl}" width="40" height="32"> <!-- Use logo URL here -->
-                        <span class="fs-4 text-white">aranatha</span>
+                <nav class="navbar navbar-expand-md" style="width: 100%; display: flex; align-items: center;">
+                    <a href="${homeUrl}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                        <img src="${logoUrl}" width="50" height="40"> <!-- Use logo URL here -->
+                        <span class="fs-2 text-white">aranatha</span>
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a href="${homeUrl}" class="${this.isActive(homeUrl, currentPath)} me-1 btn btn-success nav-link" aria-current="page">Home</a></li>
-                            <li class="nav-item"><a href="${aboutUrl}" class="${this.isActive(aboutUrl, currentPath)} me-1 btn btn-success nav-link">Sobre Nós</a></li>
-                            <li class="nav-item"><a href="${photosUrl}" class="${this.isActive(photosUrl, currentPath)} me-1 btn btn-success nav-link">Fotos do Grupo</a></li>
-                            <li class="nav-item"><a href="${calendarUrl}" class="${this.isActive(calendarUrl, currentPath)} me-1 btn btn-success nav-link">Calendário de Compromissos</a></li>
-                            <li class="nav-item"><a href="${contactsUrl}" class="${this.isActive(contactsUrl, currentPath)} me-1 btn btn-success nav-link">Contatos</a></li>
+                            <li class="nav-item"><a href="${homeUrl}" class="${this.isActive(homeUrl, currentPath)} fs-5 me-1 btn btn-success nav-link" aria-current="page">Home</a></li>
+                            <li class="nav-item"><a href="${aboutUrl}" class="${this.isActive(aboutUrl, currentPath)} fs-5 me-1 btn btn-success nav-link">Sobre Nós</a></li>
+                            <li class="nav-item"><a href="${photosUrl}" class="${this.isActive(photosUrl, currentPath)} fs-5 me-1 btn btn-success nav-link">Fotos do Grupo</a></li>
+                            <li class="nav-item"><a href="${calendarUrl}" class="${this.isActive(calendarUrl, currentPath)} fs-5 me-1 btn btn-success nav-link">Calendário de Compromissos</a></li>
+                            <li class="nav-item"><a href="${contactsUrl}" class="${this.isActive(contactsUrl, currentPath)} fs-5 me-1 btn btn-success nav-link">Contatos</a></li>
                         </ul>
                     </div>
                 </nav>
             </div>
-            </div>
-<svg id="header-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 30" preserveAspectRatio="none" style="display: block;">
-    <path fill="#71bfff" opacity="0.33" d="M473,10 c-203.9,13.7-263.1-5.3-320.3,0C66,18.5,0,9.3,0,9.3V0h1000v9.3 c0,0-62.1,4-94.9,4.6c-32.8,0.5-62.8-1.9-75.8-3.4C806,7.7,745.3,1.35,694.9,0.73S492.4,9.15,473,10z"></path>
-    <path fill="#71bfff" opacity="0.66" d="M734,10 c-45.5,0-77.2-3.6-129.1-6.05c-28.6-1.35-150.3-1.55-254,6.05 s-91.7-5.3-149.2,0C115.7,18.3,0,6.15,0,6.15V0h1000v5.65c0,0-28.2-2.85-92.1-2.85C810.2,2.8,775.7,10,734,10z"></path>
-    <path fill="#71bfff" d="M766.1,4.5 c-200-8.9-266,10.1-395.1,3C242,0.3,242,0.8,184.8,3.2C128,5.5,132.3,6.95,89.9,8.15C28.6,9.85,0,0,0,0 h1000c0,0-9.9,6.35-83.6,7.45S829.6,7.25,766.1,4.5z"></path>
+        </div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 50" preserveAspectRatio="none" style="display: block;">
+    <path fill="#71bfff" opacity="0.33" d="M473,33.65 c-203.9,44.15-263.1-17-320.3,0C66,59.55,0,29.85,0,29.85V0h1000v29.85 c0,0-62.1,13.05-94.9,14.65c-32.8,1.65-62.8-6.15-75.8-11.05C806,24.8,745.3,4.35,694.9,2.35S492.4,29.5,473,33.65z"></path>
+    <path fill="#71bfff" opacity="0.66" d="M734,33.65 c-45.5,0-77.2-11.6-129.1-19.55c-28.6-4.35-150.3-5.05-254,19.55 s-91.7-17.2-149.2,0C115.7,59.15,0,19.9,0,19.9V0h1000v18.25c0,0-28.2-9.25-92.1-9.25C810.2,9.05,775.7,33.65,734,33.65z"></path>
+    <path fill="#71bfff" d="M766.1,14.45 c-200-28.75-266,32.75-395.1,9.75C242,0.9,242,2.7,184.8,10.3C128,17.9,132.3,22.45,89.9,26.25C28.6,31.85,0,0,0,0 h1000c0,0-9.9,20.45-83.6,24.05S829.6,23.5,766.1,14.45z"></path>
 </svg>
 
         `;
