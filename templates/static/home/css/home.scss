@@ -7,10 +7,5 @@ $danger: #ff5757;
 $light: #dceffe;
 $dark: #4d2182;
 
-
-.navtexts {
-    font-size: 1.125rem;  // This is equivalent to 18px if the root font size is 16px
-}
-
 // Then import Bootstrap
 @import "../../../../node_modules/bootstrap/scss/bootstrap";

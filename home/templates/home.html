@@ -15,84 +15,168 @@
 
 <body>
     <!-- Header -->
-    <main-header 
-    data-home-url="{% url 'home' %}"
-    data-about-url="{% url 'about' %}"
-    data-photos-url="{% url 'fotos' %}"
-    data-calendar-url="{% url 'calendario' %}"
-    data-contacts-url="{% url 'contatos' %}"
-    data-logo-url="{% static 'home/files/logo.png' %}">
-</main-header>
+    <main-header data-home-url="{% url 'home' %}" data-about-url="{% url 'about' %}" data-photos-url="{% url 'fotos' %}"
+        data-calendar-url="{% url 'calendario' %}" data-contacts-url="{% url 'contatos' %}"
+        data-logo-url="{% static 'home/files/logo.png' %}">
+    </main-header>
 
 
     <!-- Main content -->
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-8">
-                <h1>Home</h1>
-                <p class="lead">Bem-vindo ao site oficial do grupo Maranatha!</p>
-                <p>Este é um site feito para ajudar na organização de nossos participantes!</p>
-            </div>
+    <div>
+        <!-- primeira linha -->
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Texto principal (esquerda) -->
+                <div class="col-md-8">
+                    <h1>Home</h1>
+                    <p class="lead">Bem-vindo ao site oficial do grupo Maranatha!</p>
+                    <p>Este é um site feito para ajudar na organização de nossos participantes!</p>
+                </div>
 
 
-            <!-- Barras Laterais -->
-            <div class="col-md-3">
-                <h2>Próximos eventos</h2>
-                <ul class="list-group">
-                    <li class="list-group-item"><a href="#">Evento 1</a></li>
-                    <li class="list-group-item"><a href="#">Evento 2</a></li>
-                    <li class="list-group-item"><a href="#">Evento 3</a></li>
-                </ul>
+                <!-- Barra Lateral (direita) -->
+                <div class="col-md-3">
+                    <h2>Próximos eventos</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="#">Evento 1</a></li>
+                        <li class="list-group-item"><a href="#">Evento 2</a></li>
+                        <li class="list-group-item"><a href="#">Evento 3</a></li>
+                    </ul>
+                </div>
             </div>
+        </div>
+
+        <!-- segunda linha -->
+
+        <!-- svg-wave-divider -->
+        <div class="mt-5">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 45" preserveAspectRatio="none">
+                <path fill="#dceffe"
+                    d="M1194.69.428C357.407 5.928 463.379 33.065 0 13.813V47h1922V27.014S1864.52-3.973 1194.69.428Z" />
+            </svg>
         </div>
 
         <!-- Ultima noticia -->
-        <div class="row">
-            <div class="col">
-                <h2>Última notícia</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card" aria-hidden="true">
-                    <!-- Notícia Placeholder -->
-                    <div>
-                        <div class="row">
-                            <div class="col-md-15">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="300">
-                                    <rect width="100%" height="100%" fill="#71bfff"></rect>
-                                </svg>
-                            </div>
+        <div class="bg-light">
+            <div class="container">
+                
+                <div class="row">
+                    <div class="col">
+                        <h2>Últimas notícias</h2>
+                    </div>
+                </div>
 
-                            <!-- Texto Placeholder -->
-                            <div class="row card-body">
-                                <h5 class="card-title placeholder-glow">
-                                    <span class="placeholder col-6"></span>
-                                </h5>
-                                <p class="card-text placeholder-glow">
-                                    <span class="placeholder col-7"></span>
-                                    <span class="placeholder col-4"></span>
-                                    <span class="placeholder col-4"></span>
-                                    <span class="placeholder col-6"></span>
-                                    <span class="placeholder col-8"></span>
-                                    <a class="btn btn-primary disabled placeholder col-6 mt-2" aria-disabled="true"></a>
-                                </p>
+                <div class="row">
+                    
+                    <div class="mb-5 col-md-4">
+                        <div class="card" aria-hidden="true">
+                            <!-- Notícia Placeholder -->
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-15">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="300">
+                                            <rect width="100%" height="100%" fill="#71bfff"></rect>
+                                        </svg>
+                                    </div>
+
+                                    <!-- Texto Placeholder -->
+                                    <div class="row card-body">
+                                        <h5 class="card-title placeholder-glow">
+                                            <span class="placeholder col-6"></span>
+                                        </h5>
+                                        <p class="card-text placeholder-glow">
+                                            <span class="placeholder col-7"></span>
+                                            <span class="placeholder col-4"></span>
+                                            <span class="placeholder col-4"></span>
+                                            <span class="placeholder col-6"></span>
+                                            <span class="placeholder col-8"></span>
+                                            <a class="btn btn-primary disabled placeholder col-6 mt-2"
+                                                aria-disabled="true"></a>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="mb-5 col-md-4">
+                        <div class="card" aria-hidden="true">
+                            <!-- Notícia Placeholder -->
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-15">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="300">
+                                            <rect width="100%" height="100%" fill="#71bfff"></rect>
+                                        </svg>
+                                    </div>
+
+                                    <!-- Texto Placeholder -->
+                                    <div class="row card-body">
+                                        <h5 class="card-title placeholder-glow">
+                                            <span class="placeholder col-6"></span>
+                                        </h5>
+                                        <p class="card-text placeholder-glow">
+                                            <span class="placeholder col-7"></span>
+                                            <span class="placeholder col-4"></span>
+                                            <span class="placeholder col-4"></span>
+                                            <span class="placeholder col-6"></span>
+                                            <span class="placeholder col-8"></span>
+                                            <a class="btn btn-primary disabled placeholder col-6 mt-2"
+                                                aria-disabled="true"></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-5 col-md-4">
+                        <div class="card" aria-hidden="true">
+                            <!-- Notícia Placeholder -->
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-15">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="300">
+                                            <rect width="100%" height="100%" fill="#71bfff"></rect>
+                                        </svg>
+                                    </div>
+
+                                    <!-- Texto Placeholder -->
+                                    <div class="row card-body">
+                                        <h5 class="card-title placeholder-glow">
+                                            <span class="placeholder col-6"></span>
+                                        </h5>
+                                        <p class="card-text placeholder-glow">
+                                            <span class="placeholder col-7"></span>
+                                            <span class="placeholder col-4"></span>
+                                            <span class="placeholder col-4"></span>
+                                            <span class="placeholder col-6"></span>
+                                            <span class="placeholder col-8"></span>
+                                            <a class="btn btn-primary disabled placeholder col-6 mt-2"
+                                                aria-disabled="true"></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
-
         </div>
 
     </div>
-
+    
+    
+    <main-footer
+    paroquia-logo-url="{% static 'home/files/logo-completa-branca-2.svg' %}"
+    rcc-logo-url="{% static 'home/files/9.png' %}"
+    ></main-footer>
 
     <!-- Optional JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
     <script src="{% static 'home/js/headerManager.js' %}"></script>
 </body>
 
