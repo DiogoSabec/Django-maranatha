@@ -7,11 +7,9 @@ $danger: #ff5757;
 $light: #dceffe;
 $dark: #4d2182;
 
-
-
-
-
-
+#divider {
+    border-top: 1px solid $dark;
+}
 
 // Then import Bootstrap
 @import "../../../../node_modules/bootstrap/scss/bootstrap";
