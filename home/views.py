@@ -1,13 +1,13 @@
 import os
 import random
 from django.conf import settings
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 
 # Constants
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
-SERVICE_ACCOUNT_FILE = settings.GOOGLE_CLOUD_CREDENTIALS_PATH  # Use o caminho absoluto das credenciais
+SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'credentials.json')
 API_SERVICE_NAME = 'drive'
 API_VERSION = 'v3'
 ROOT_FOLDER_ID = '17vUqQnNCm5LS7Oz0ow9SBOfNk90huOmm'  # Main Google Drive folder ID
@@ -30,10 +30,18 @@ def get_all_subfolders(service, parent_folder_id):
     return all_subfolders
 
 def get_folder_contents(service, folder_id):
-    """Retrieve all contents of a folder by ID."""
-    query = f"'{folder_id}' in parents"
-    fields = "files(id, name, mimeType)"
-    return service.files().list(q=query, fields=fields).execute().get('files', [])
+    """Retrieve all contents of a folder by ID, handling pagination to get all items."""
+    items = []
+    page_token = None
+    while True:
+        query = f"'{folder_id}' in parents"
+        fields = "nextPageToken, files(id, name, mimeType)"
+        results = service.files().list(q=query, fields=fields, pageToken=page_token).execute()
+        items.extend(results.get('files', []))
+        page_token = results.get('nextPageToken')
+        if not page_token:
+            break
+    return items
 
 def get_folder_path(service, folder_id):
     """Construct the path hierarchy for a given folder."""
@@ -88,7 +96,12 @@ def download_image(request, file_id):
     """Controller to initiate a download of a specific image by ID."""
     service = get_service()
     file = service.files().get(fileId=file_id, fields="id, name, mimeType, webContentLink").execute()
-    return redirect(file['webContentLink'])
+    download_url = file['webContentLink']
+
+    response = HttpResponse(content_type='application/force-download')
+    response['Content-Disposition'] = f'attachment; filename="{file["name"]}"'
+    response['X-Sendfile'] = download_url
+    return response
 
 def fotos(request):
     """View controller to display random images from a random folder."""
