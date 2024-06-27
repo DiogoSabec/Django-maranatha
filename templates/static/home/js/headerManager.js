@@ -9,7 +9,7 @@ class MainHeader extends HTMLElement {
         const currentPath = window.location.pathname; // Get current path
 
         this.innerHTML = `
-        <div class="container-fluid fill bg-secondary" style="height: 100px; display: flex; align-items: center;" id="topo">
+        <div class="container-fluid fill bg-secondary" style="; display: flex; align-items: center;" id="topo">
             <div class="container">
                 <nav class="navbar navbar-expand-md" style="width: 100%; display: flex; align-items: center;">
                     
@@ -19,9 +19,9 @@ class MainHeader extends HTMLElement {
                     </a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                     </button>
-
+                    
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item"><a href="${homeUrl}" class="${this.isActive(homeUrl, currentPath)} fs-5 me-1 btn btn-success nav-link" aria-current="page">Home</a></li>

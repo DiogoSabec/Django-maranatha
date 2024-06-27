@@ -55,7 +55,7 @@ def get_folder_path(service, folder_id):
 def get_random_images_from_random_folder():
     """Select a random subfolder and return a random set of image URLs from it."""
     service = get_service()
-    all_subfolders = get_all_subfolders(service, ROOT_FOLDER_ID)
+    all_subfolders = get_all_subfolders(service, '1kCAs5XTUr04Mbbdfj2OQbYRcQt_HcIG-')
 
     if not all_subfolders:
         return [], ""
