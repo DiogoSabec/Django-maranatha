@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
-    <link rel="stylesheet" href="{% static 'fotos/css/fotos.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 
     <title>Maranatha</title>
     <style>
@@ -28,6 +28,9 @@
 
     <div class="container">
         <h1>Fotos: {{ folder_name }}</h1>
+        <h1>
+            Isso é só um pouco do que a gente vive
+        </h1>
         <div class="container row">
             <div class="row">
                 {% for image_url in image_urls %}
@@ -42,9 +45,9 @@
                 </div>
                 {% endfor %}
             </div>
-            <div class="text-center m-5">
+            <div class="text-center m-3">
                 <h1>
-                    Deseja ver todas as fotos?
+                    Venha ver todas as memórias!
                 </h1>
                 <a class="btn btn-primary" href="{% url 'browse' %}" role="button">Veja aqui</a>
             </div>
