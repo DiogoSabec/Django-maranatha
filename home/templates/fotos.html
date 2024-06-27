@@ -3,44 +3,61 @@
 <html lang="pt-br">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
-
     <title>Maranatha</title>
+    <style>
+        .img-crop {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            /* This will crop the image to fit the container */
+        }
+    </style>
 </head>
 
 <body>
     <!-- Header -->
-    <main-header 
-    data-home-url="{% url 'home' %}"
-    data-about-url="{% url 'about' %}"
-    data-photos-url="{% url 'fotos' %}"
-    data-calendar-url="{% url 'calendario' %}"
-    data-contacts-url="{% url 'contatos' %}"
-    data-logo-url="{% static 'home/files/logo.png' %}">
-</main-header>
-
+    <main-header data-home-url="{% url 'home' %}" data-about-url="{% url 'about' %}" data-photos-url="{% url 'fotos' %}"
+        data-calendar-url="{% url 'calendario' %}" data-contacts-url="{% url 'contatos' %}"
+        data-logo-url="{% static 'home/files/logo.png' %}">
+    </main-header>
 
     <div class="container">
-        <h1>Fotos</h1>
+        <h1>Fotos: {{ folder_name }}</h1>
+        <div class="container row">
+            <div class="row">
+                {% for image_url in image_urls %}
+                <div class="mb-5 col-md-4 col-12">
+                    <div class="card">
+                        <img src="{{ image_url }}" alt="Image from Google Drive" class="img-crop">
+                        <div class="card-body">
+                            <h5 class="card-title">Image Title</h5>
+                            <p class="card-text">Some description about the image.</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="text-center m-5">
+                <h1>
+                    Deseja ver todas as fotos?
+                </h1>
+                <a class="btn btn-primary" href="{% url 'browse' %}" role="button">Veja aqui</a>
+            </div>
+        </div>
     </div>
 
-    <!-- Footer -->
-    <main-footer
-    paroquia-logo-url="{% static 'home/files/logo-completa-branca-2.svg' %}"
-    rcc-logo-url="{% static 'home/files/9.png' %}"
-    ></main-footer>
+        <!-- Footer -->
+        <main-footer paroquia-logo-url="{% static 'home/files/logo-completa-branca-2.svg' %}"
+            rcc-logo-url="{% static 'home/files/9.png' %}"></main-footer>
 
-    <!-- Optional JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script src="{% static 'home/js/headerManager.js' %}"></script>
-
+        <!-- Optional JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+        <script src="{% static 'home/js/headerManager.js' %}"></script>
 </body>
 
 </html>

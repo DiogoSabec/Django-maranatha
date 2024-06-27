@@ -1,0 +1,91 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+    <title>Browse {{ folder_name }}</title>
+    <style>
+        .img-crop {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .folder {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .folder img {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <main-header 
+    data-home-url="{% url 'home' %}"
+    data-about-url="{% url 'about' %}"
+    data-photos-url="{% url 'fotos' %}"
+    data-calendar-url="{% url 'calendario' %}"
+    data-contacts-url="{% url 'contatos' %}"
+    data-logo-url="{% static 'home/files/logo.png' %}">
+    </main-header>
+
+    <div class="container">
+        <h1>Browse {{ folder_name }}</h1>
+        
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'browse' %}">Root Folder</a></li>
+                {% for folder in folder_path %}
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'browse_folder' folder.id %}">{{ folder.name }}</a>
+                    </li>
+                {% endfor %}
+            </ol>
+        </nav>
+
+        <div class="container text-lg-start">
+            <h2>Folders</h2>
+            {% for folder in folders %}
+            <div class="container fs-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-folder-fill" viewBox="0 0 16 16"><path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z"/></svg>
+                <a href="{% url 'browse_folder' folder.id %}">{{ folder.name }}</a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="images">
+            <h2>Images</h2>
+            <div class="row">
+                {% for image in image_urls %}
+                <div class="mb-5 col-md-4 col-12">
+                    <div class="card">
+                        <img src="{{ image.url }}" alt="Image from Google Drive" class="img-crop">
+                        <div class="card-body">
+                            <h5 class="card-title">Image Title</h5>
+                            <a href="{% url 'download_image' image.id %}" class="btn btn-primary">Download</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <main-footer
+    paroquia-logo-url="{% static 'home/files/logo-completa-branca-2.svg' %}"
+    rcc-logo-url="{% static 'home/files/9.png' %}">
+    </main-footer>
+
+    <!-- Optional JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'home/js/headerManager.js' %}"></script>
+</body>
+</html>

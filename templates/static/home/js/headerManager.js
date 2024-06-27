@@ -14,10 +14,8 @@ class MainHeader extends HTMLElement {
                 <nav class="navbar navbar-expand-md" style="width: 100%; display: flex; align-items: center;">
                     
                     <a href="${homeUrl}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                        <div class="container justify-content-end">    
                             <img src="${logoUrl}" width="50" height="40">
                             <span class="fs-2 text-white">aranatha</span>
-                        </div>    
                     </a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
