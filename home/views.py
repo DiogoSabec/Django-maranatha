@@ -7,7 +7,7 @@ from google.oauth2 import service_account
 
 # Constants
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
-SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'templates/static/home/files/credentials.json')
+SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'credentials.json')
 API_SERVICE_NAME = 'drive'
 API_VERSION = 'v3'
 ROOT_FOLDER_ID = '17vUqQnNCm5LS7Oz0ow9SBOfNk90huOmm'  # Main Google Drive folder ID
