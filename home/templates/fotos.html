@@ -31,10 +31,10 @@
         <h1>
             Isso é só um pouco do que a gente vive
         </h1>
-        <div class="container row">
+        <div class="container">
             <div class="row">
                 {% for image_url in image_urls %}
-                <div class="mb-5 col-md-4 col-12">
+                <div class="mb-5 col-md-3 col-12">
                     <div class="card">
                         <img src="{{ image_url }}" alt="Image from Google Drive" class="img-crop">
                         <div class="card-body">
@@ -44,12 +44,12 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div>
-            <div class="text-center m-3">
-                <h1>
-                    Venha ver todas as memórias!
-                </h1>
-                <a class="btn btn-primary" href="{% url 'browse' %}" role="button">Veja aqui</a>
+                <div class="col text-center m-3">
+                    <h1>
+                        Venha ver todas as memórias!
+                    </h1>
+                    <a class="btn btn-primary" href="{% url 'browse' %}" role="button">Veja aqui</a>
+                </div>
             </div>
         </div>
     </div>
