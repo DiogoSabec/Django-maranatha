@@ -33,6 +33,27 @@ ALLOWED_HOSTS = [
     
     ]
 
+import environ
+import json
+import os
+from pathlib import Path
+
+# Inicializar o Environ
+env = environ.Env()
+# Ler o arquivo .env no diretório BASE_DIR
+environ.Env.read_env(os.path.join(Path(__file__).resolve().parent.parent, '.env'))
+
+# Verificar se a variável de ambiente foi carregada corretamente
+if 'GOOGLE_CLOUD_CREDENTIALS' not in env.ENVIRON:
+    raise Exception("A variável de ambiente 'GOOGLE_CLOUD_CREDENTIALS' não está definida.")
+
+# Construir o caminho absoluto para o arquivo de credenciais
+GOOGLE_CLOUD_CREDENTIALS_PATH = os.path.join(Path(__file__).resolve().parent.parent, env('GOOGLE_CLOUD_CREDENTIALS'))
+print("Caminho do arquivo de credenciais:", GOOGLE_CLOUD_CREDENTIALS_PATH)
+
+# Carregar o Conteúdo do Arquivo de Credenciais
+with open(GOOGLE_CLOUD_CREDENTIALS_PATH, 'r') as f:
+    GOOGLE_CLOUD_CREDENTIALS = json.load(f)
 
 # Application definition
 
