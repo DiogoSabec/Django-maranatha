@@ -50,11 +50,10 @@
             <h2>Images</h2>
             <div class="row">
                 {% for image in image_urls %}
-                <div class="mb-5 col-md-4 col-12">
+                <div class="mb-5 col-md-4 col-6">
                     <div class="card">
                         <img src="{{ image.url }}" alt="Image from Google Drive" class="img-crop">
                         <div class="card-body">
-                            <h5 class="card-title">Image Title</h5>
                             <a href="{% url 'download_image' image.id %}" class="btn btn-primary">Download</a>
                         </div>
                     </div>

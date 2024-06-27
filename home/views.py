@@ -50,7 +50,7 @@ def get_folder_path(service, folder_id):
         folder = service.files().get(fileId=folder_id, fields="id, name, parents").execute()
         folder_path.append(folder)
         folder_id = folder.get('parents', [None])[0]
-    return reversed(folder_path)
+    return list(reversed(folder_path))
 
 def get_random_images_from_random_folder():
     """Select a random subfolder and return a random set of image URLs from it."""
@@ -58,14 +58,11 @@ def get_random_images_from_random_folder():
     all_subfolders = get_all_subfolders(service, ROOT_FOLDER_ID)
 
     if not all_subfolders:
-        print('No subfolders found.')
         return [], ""
 
     random_subfolder = random.choice(all_subfolders)
-    print(f"Selected Subfolder: {random_subfolder['name']}")
-
     query = f"'{random_subfolder['id']}' in parents and mimeType contains 'image/'"
-    results = service.files().list(q=query, fields="files(id, name)").execute()
+    results = service.files().list(q=query, fields="files(id)").execute()
     items = results.get('files', [])
 
     image_urls = [f"https://lh3.googleusercontent.com/d/{item['id']}=w1000?authuser=1/view" for item in items]
@@ -83,7 +80,7 @@ def browse_folder(request, folder_id=None):
     image_urls = [{'url': f"https://lh3.googleusercontent.com/d/{item['id']}=w1000?authuser=1/view", 'id': item['id']} for item in images]
 
     folder_name = next((item['name'] for item in folders if item['id'] == folder_id), "Root Folder")
-    folder_path = list(get_folder_path(service, folder_id))
+    folder_path = get_folder_path(service, folder_id)
 
     return render(request, 'browse.html', {
         'folders': folders, 
@@ -95,7 +92,7 @@ def browse_folder(request, folder_id=None):
 def download_image(request, file_id):
     """Controller to initiate a download of a specific image by ID."""
     service = get_service()
-    file = service.files().get(fileId=file_id, fields="id, name, mimeType, webContentLink").execute()
+    file = service.files().get(fileId=file_id, fields="webContentLink").execute()
     return redirect(file['webContentLink'])
 
 def fotos(request):
@@ -117,5 +114,4 @@ def contatos(request):
 
 def home(request):
     """View controller for the home page."""
-    if request.method == 'GET':
-        return render(request, 'home.html')
+    return render(request, 'home.html')
