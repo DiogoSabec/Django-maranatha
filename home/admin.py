@@ -1,4 +1,8 @@
 from django.contrib import admin
-from .models import Usuario
+from .models import Noticia
 
-admin.site.register(Usuario)
+class NoticiaAdmin(admin.ModelAdmin):
+    list_display = ('titulo', 'foto', 'dataUpload')  # Adicione 'dataUpload' aqui
+    search_fields = ('titulo', 'descricao')
+
+admin.site.register(Noticia, NoticiaAdmin)

@@ -10,4 +10,7 @@ urlpatterns = [
     path('browse/', views.browse_folder, name='browse'),
     path('browse/<str:folder_id>/', views.browse_folder, name='browse_folder'),
     path('download/<str:file_id>/', views.download_image, name='download_image'),
+    path('noticias/', views.lista_noticias, name='lista_noticias'),
+    path('noticias/<int:id>/', views.detalhe_noticia, name='detalhe_noticia'),
+
 ]

@@ -1,0 +1,47 @@
+<!-- home/templates/home/detalhe_noticia.html -->
+
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <title>{{ noticia.titulo }}</title>
+</head>
+
+<body>
+    <main-header data-home-url="{% url 'home' %}" data-about-url="{% url 'about' %}" data-photos-url="{% url 'fotos' %}"
+        data-calendar-url="{% url 'calendario' %}" data-contacts-url="{% url 'contatos' %}"
+        data-logo-url="{% static 'home/files/logo.png' %}" data-noticias-url="{% url 'lista_noticias' %}">
+    </main-header>
+
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-4">
+                {% if noticia.link %}
+                <a href="{{ noticia.link }}" target="_blank">
+                    <img src="{{ noticia.foto.url }}" class="img-fluid" alt="{{ noticia.titulo }}">
+                </a>
+                {% else %}
+                <img src="{{ noticia.foto.url }}" class="img-fluid" alt="{{ noticia.titulo }}">
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <h1>{{ noticia.titulo }}</h1>
+                <span>{{ noticia.dataUpload|date:"d/m/Y" }}</span>
+                <p class="lead mt-4">{{ noticia.descricao }}</p>
+                <a href="{% url 'lista_noticias' %}" class="btn btn-primary mt-3">Voltar para a lista de notícias</a>
+            </div>
+        </div>
+    </div>
+
+    <main-footer paroquia-logo-url="{% static 'home/files/logo-completa-branca-2.svg' %}" rcc-logo-url="{% static 'home/files/9.png' %}"></main-footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{% static 'home/js/headerManager.js' %}"></script>
+</body>
+
+</html>

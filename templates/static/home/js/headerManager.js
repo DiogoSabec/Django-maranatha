@@ -5,6 +5,7 @@ class MainHeader extends HTMLElement {
         const photosUrl = this.getAttribute('data-photos-url');
         const calendarUrl = this.getAttribute('data-calendar-url');
         const contactsUrl = this.getAttribute('data-contacts-url');
+        const noticiasUrl = this.getAttribute('data-noticias-url');
         const logoUrl = this.getAttribute('data-logo-url'); // Get logo URL from data attribute
         const currentPath = window.location.pathname; // Get current path
 
@@ -26,6 +27,7 @@ class MainHeader extends HTMLElement {
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item"><a href="${homeUrl}" class="${this.isActive(homeUrl, currentPath)} fs-5 me-1 btn btn-success nav-link" aria-current="page">Home</a></li>
                             <li class="nav-item"><a href="${aboutUrl}" class="${this.isActive(aboutUrl, currentPath)} fs-5 me-1 btn btn-success nav-link">Sobre Nós</a></li>
+                            <li class="nav-item"><a href="${noticiasUrl}" class="${this.isActive(aboutUrl, currentPath)} fs-5 me-1 btn btn-success nav-link">Notícias</a></li>
                             <li class="nav-item"><a href="${photosUrl}" class="${this.isActive(photosUrl, currentPath)} fs-5 me-1 btn btn-success nav-link">Fotos do Grupo</a></li>
                             <li class="nav-item"><a href="${calendarUrl}" class="${this.isActive(calendarUrl, currentPath)} fs-5 me-1 btn btn-success nav-link">Calendário de Compromissos</a></li>
                             <li class="nav-item"><a href="${contactsUrl}" class="${this.isActive(contactsUrl, currentPath)} fs-5 me-1 btn btn-success nav-link">Contatos</a></li>

@@ -1,22 +1,39 @@
 import os
 import random
+from datetime import datetime
 from django.conf import settings
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 
-# Constants
-SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
-SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'credentials.json')
-API_SERVICE_NAME = 'drive'
-API_VERSION = 'v3'
-ROOT_FOLDER_ID = '17vUqQnNCm5LS7Oz0ow9SBOfNk90huOmm'  # Main Google Drive folder ID
+from .models import Noticia
 
-def get_service():
-    """Create a Google Drive API service."""
+# Constants
+SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
+SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'credentials.json')
+CALENDAR_ID = 'diogovanzosabec@gmail.com'  # Replace with your calendar ID
+
+def get_google_calendar_service():
+    """Create a Google Calendar API service."""
     credentials = service_account.Credentials.from_service_account_file(
         SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-    return build(API_SERVICE_NAME, API_VERSION, credentials=credentials)
+    return build('calendar', 'v3', credentials=credentials)
+
+def get_upcoming_events():
+    """Fetch the next 3 upcoming events from Google Calendar."""
+    service = get_google_calendar_service()
+    now = datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
+    events_result = service.events().list(calendarId=CALENDAR_ID, timeMin=now,
+                                          maxResults=3, singleEvents=True,
+                                          orderBy='startTime').execute()
+    events = events_result.get('items', [])
+    return events
+
+def get_google_drive_service():
+    """Create a Google Drive API service."""
+    credentials = service_account.Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_FILE, scopes=['https://www.googleapis.com/auth/drive.readonly'])
+    return build('drive', 'v3', credentials=credentials)
 
 def get_all_subfolders(service, parent_folder_id):
     """Recursively gather all subfolders starting from the parent folder."""
@@ -54,7 +71,7 @@ def get_folder_path(service, folder_id):
 
 def get_random_images_from_random_folder():
     """Select a random subfolder and return a random set of image URLs from it."""
-    service = get_service()
+    service = get_google_drive_service()
     all_subfolders = get_all_subfolders(service, '1kCAs5XTUr04Mbbdfj2OQbYRcQt_HcIG-')
 
     if not all_subfolders:
@@ -71,7 +88,7 @@ def get_random_images_from_random_folder():
 
 def browse_folder(request, folder_id=None):
     """View controller to browse a folder and display its contents."""
-    service = get_service()
+    service = get_google_drive_service()
     folder_id = folder_id or ROOT_FOLDER_ID
     folder_contents = get_folder_contents(service, folder_id)
 
@@ -91,7 +108,7 @@ def browse_folder(request, folder_id=None):
 
 def download_image(request, file_id):
     """Controller to initiate a download of a specific image by ID."""
-    service = get_service()
+    service = get_google_drive_service()
     file = service.files().get(fileId=file_id, fields="webContentLink").execute()
     return redirect(file['webContentLink'])
 
@@ -113,5 +130,14 @@ def contatos(request):
     return render(request, 'contatos.html')
 
 def home(request):
-    """View controller for the home page."""
-    return render(request, 'home.html')
+    ultimas_noticias = Noticia.objects.order_by('-id')[:3]
+    eventos = get_upcoming_events()
+    return render(request, 'home.html', {'ultimas_noticias': ultimas_noticias, 'eventos': eventos})
+
+def lista_noticias(request):
+    noticias = Noticia.objects.all()
+    return render(request, 'lista_noticias.html', {'noticias': noticias})
+
+def detalhe_noticia(request, id):
+    noticia = get_object_or_404(Noticia, id=id)
+    return render(request, 'detalhe_noticia.html', {'noticia': noticia})

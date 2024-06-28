@@ -1,12 +1,11 @@
 from django.db import models
-
-class Usuario(models.Model):
-    nome = models.CharField(max_length=50)
-    email = models.EmailField()
-    senha = models.CharField(max_length=50)
-    nascimento = models.DateField()
-    telefone = models.CharField(max_length=20)
-    data_atualizacao = models.DateTimeField(auto_now=True)
     
+class Noticia(models.Model):
+    titulo = models.CharField(max_length=200)
+    descricao = models.TextField()
+    foto = models.ImageField(upload_to='fotos/')
+    dataUpload = models.DateTimeField(auto_now_add=True)
+    link = models.URLField(blank=True, null=True)
+
     def __str__(self):
-        return self.nome
+        return self.titulo
