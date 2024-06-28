@@ -7,6 +7,12 @@ $danger: #ff5757;
 $light: #dceffe;
 $dark: #4d2182;
 
+.calendar-container {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0px 50px 0px;
+}
+
 #footer {
     background-image: linear-gradient(0deg, $primary, #3f6dc2);
 }
@@ -30,3 +36,4 @@ $dark: #4d2182;
 body {
     font-family: 'Roboto Flex', sans-serif;
 }
+
