@@ -6,6 +6,17 @@
   margin: 50px 0px 50px 0px;
 }
 
+html, body {
+  height: 100%; /* Essential to make the height calculation work */
+  margin: 0; /* Remove default margin */
+  display: flex;
+  flex-direction: column;
+}
+
+#content-wrap {
+  flex: 1; /* This makes the content area flexible to occupy any remaining space */
+}
+
 #footer {
   background-image: linear-gradient(0deg, #1c46bf, #3f6dc2);
 }

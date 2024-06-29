@@ -17,22 +17,52 @@
     <!-- Header -->
     <main-header data-home-url="{% url 'home' %}" data-about-url="{% url 'about' %}" data-photos-url="{% url 'fotos' %}"
         data-calendar-url="{% url 'calendario' %}" data-contacts-url="{% url 'contatos' %}"
-        data-logo-url="{% static 'home/files/logo.png' %}" data-noticias-url = "{% url 'lista_noticias' %}">
+        data-logo-url="{% static 'home/files/logo.png' %}" data-noticias-url="{% url 'lista_noticias' %}">
     </main-header>
 
 
-    <div class="container">
+    <div class="container col-md-6">
         <h1>Sobre nós</h1>
-        <p>O grupo Maranatha é um grupo de adolecentes, com jovens a partir de 13 anos de idade</p>
-    </div>
+        <p>O Maranatha é um grupo de Oração, participante da Renovação Carismatica cátolica, na Arquidiocede de
+            Londrinade.</p>
+        <p>Nosso grupo abrange participantes a partir dos 13 anos de idade.</p>
+        <p>O Maranatha Nasceu de uma ideia de jovens, em 1990, que decidiram se dedicar a trazer mais almas para perto
+            de Deus. Todo ano nós temos um encontro de primeiro anúncio, o Fórmula 1</p>
+        <p>Os nossos ultimos encontros tem tido a inscrição de mais de 100 jovens!</p>
+        <p>O Maranatha acontece no terceiro andar da nossa Paróquia, a Coração de Maria (Av: Higienópolis, 1073), todos
+            os domingos as 10:30!</p>
+        <ul>
+            <p>O Nosso grupo possui alguns minisérios, sendo eles:</p>
+            <li>Ministério de Promoção Humana: Responsável pela Acolhida, Pastoreio e Ações Sociais</li>
+            <li>Ministério de Pregação: Responsável por organizar e decidir todos os temas e as pessoas para todas as
+                pregações do grupo</li>
+            <li>Ministério de Formação: Responsável pela acolhida dos novos participantes e para explicação de todo o
+                Catecismo da Igreja Católica, ao ternimar o crescimento, você se torna um servo do nosso grupo!</li>
+            <li>Ministério de Comunicação: Responsável por todas as redes sociais, decorações de encontros, fotos...
+                Tudo feito para você ter o seu momento Registrado no grupo!</li>
+            <li>Ministério de Música e Artes: Responsável pelas músicas que vão tocar nos momentos, assim como Teatros
+                que podem ser passados nos grupos ou encontros!</li>
+            <li>Ministério de Intercessão: Responsável pela unidade Espiritual do Maranatha, possuem servos que rezam
+                pelas intenções, do grupo ou particulares dos nossos participantes</li>
+        </ul>
+        <div class="container text-center mt-5 mb-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h3>Quer nos conhecer melhor?</h3>
+                        <h4>Entre em Contato com um dos nossos coordenadores!</h4>
+                    <a href="{% url 'contatos' %}">
+                        <button class="btn btn-primary">Contato!</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+            </div>
 
     <!-- Footer -->
-    <main-footer
-    paroquia-logo-url="{% static 'home/files/logo-completa-branca-2.svg' %}"
-    rcc-logo-url="{% static 'home/files/9.png' %}"
-    ></main-footer>
-    
-<!-- Optional JavaScript -->
+    <main-footer paroquia-logo-url="{% static 'home/files/logo-completa-branca-2.svg' %}"
+        rcc-logo-url="{% static 'home/files/9.png' %}"></main-footer>
+
+    <!-- Optional JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

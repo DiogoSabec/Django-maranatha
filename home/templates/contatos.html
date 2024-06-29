@@ -20,8 +20,35 @@
         data-logo-url="{% static 'home/files/logo.png' %}" data-noticias-url = "{% url 'lista_noticias' %}">
     </main-header>
     <div class="container">
-        <h1>Contatos</h1>
+        <h1>Conheça os nossos coordenadores!</h1>
     </div>
+
+    <div class="row">
+        {% for contato in contatos %}
+        <div class="mb-5 col-md-4 col-12">
+            <div class="card">
+                <div class="card-body">
+                    {% if contato.foto %}
+                        <img src="{{ contato.foto.url }}" class="card-img-top" alt="{{ contato.nome }}">
+                    {% endif %}
+    
+                    <div class="mt-3">
+                        <h5 class="card-title">{{ contato.nome }}</h5>
+                        <p class="card-text">{{ contato.descricao }}</p>
+                        <a href="https://wa.me/55{{ contato.telefone }}" class="btn btn-primary">Whatsapp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+
+
+
+
+
+
 
         <!-- Footer -->
         <main-footer

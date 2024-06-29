@@ -6,12 +6,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 
-from .models import Noticia
+from .models import Coord, Noticia
 
 # Constants
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'credentials.json')
 CALENDAR_ID = 'diogovanzosabec@gmail.com'  # Replace with your calendar ID
+ROOT_FOLDER_ID = "17vUqQnNCm5LS7Oz0ow9SBOfNk90huOmm"
 
 def get_google_calendar_service():
     """Create a Google Calendar API service."""
@@ -127,7 +128,8 @@ def calendario(request):
 
 def contatos(request):
     """Static view for the 'Contacts' page."""
-    return render(request, 'contatos.html')
+    contatos = Coord.objects.all()
+    return render(request, 'contatos.html', {'contatos': contatos})
 
 def home(request):
     ultimas_noticias = Noticia.objects.order_by('-id')[:3]
@@ -135,7 +137,8 @@ def home(request):
     return render(request, 'home.html', {'ultimas_noticias': ultimas_noticias, 'eventos': eventos})
 
 def lista_noticias(request):
-    noticias = Noticia.objects.all()
+    # Order by 'dataUpload' in descending order. Replace 'dataUpload' with your actual datetime field name.
+    noticias = Noticia.objects.all().order_by('-dataUpload')
     return render(request, 'lista_noticias.html', {'noticias': noticias})
 
 def detalhe_noticia(request, id):

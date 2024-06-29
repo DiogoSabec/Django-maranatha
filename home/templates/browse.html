@@ -1,4 +1,4 @@
-{% load static%}
+{% load static %}
 <!doctype html>
 <html lang="pt-br">
 
@@ -22,6 +22,11 @@
             width: auto;
             display: block;
         }
+
+        .img-crop {
+            height: 200px;
+            object-fit: cover;
+        }
     </style>
 </head>
 
@@ -29,11 +34,11 @@
     <!-- Header -->
     <main-header data-home-url="{% url 'home' %}" data-about-url="{% url 'about' %}" data-photos-url="{% url 'fotos' %}"
         data-calendar-url="{% url 'calendario' %}" data-contacts-url="{% url 'contatos' %}"
-        data-logo-url="{% static 'home/files/logo.png' %}" data-noticias-url = "{% url 'lista_noticias' %}">
+        data-logo-url="{% static 'home/files/logo.png' %}" data-noticias-url="{% url 'lista_noticias' %}">
     </main-header>
 
-    <div class="container">
-        <h1>Browse {{ folder_name }}</h1>
+    <div class="container my-4">
+        <h1 class="display-3 mb-3">Procurador de fotos!</h1>
 
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
@@ -47,55 +52,56 @@
             </ol>
         </nav>
 
-        <div class="container text-lg-start">
-            <h2>Folders</h2>
-            {% for folder in folders %}
-            <div class="container fs-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                    class="bi bi-folder-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z" />
-                </svg>
-                <a href="{% url 'browse_folder' folder.id %}">{{ folder.name }}</a>
-            </div>
-            {% endfor %}
-        </div>
-
-        <div class="images">
-            <h2>Images</h2>
-            <div class="row">
-                {% for image in image_urls %}
-                <div class="mb-5 col-md-4 col-6">
-                    <div class="card">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal"
-                            data-image-url="{{ image.url }}">
-                            <img src="{{ image.url }}" alt="Image from Google Drive" class="img-crop">
-                        </a>
-                        <div class="card-body">
-                            <a href="{% url 'download_image' image.id %}" class="btn btn-primary">Download</a>
-                        </div>
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-start mb-4">
+                {% for folder in folders %}
+                <div class="card me-3 mb-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-folder-fill me-2" viewBox="0 0 16 16">
+                            <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z"/>
+                        </svg>
+                        <a href="{% url 'browse_folder' folder.id %}" class="text-decoration-none">{{ folder.name }}</a>
                     </div>
                 </div>
                 {% endfor %}
             </div>
         </div>
+        
+        
+    
+
+    <div>
+        <h2>Images</h2>
+        <div class="row">
+            {% for image in image_urls %}
+            <div class="col-md-4 col-6 mb-4">
+                <div class="card h-100">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-url="{{ image.url }}">
+                        <img src="{{ image.url }}" alt="Image from Google Drive" class="card-img-top img-crop">
+                    </a>
+                    <div class="card-body text-center">
+                        <a href="{% url 'download_image' image.id %}" class="btn btn-primary">Download</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
     </div>
 
     <!-- Modal -->
-    <div class="container align-items-center">
-        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <img id="modalImage" src="" class="img-fluid" alt="Preview">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" src="" class="img-fluid" alt="Preview">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

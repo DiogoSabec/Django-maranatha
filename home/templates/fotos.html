@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
-    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 
     <title>Maranatha</title>
     <style>
@@ -26,7 +25,7 @@
         data-logo-url="{% static 'home/files/logo.png' %}" data-noticias-url = "{% url 'lista_noticias' %}">
     </main-header>
 
-    <div class="container">
+    <div class="container" id="content-wrap">
         <h1>Fotos: {{ folder_name }}</h1>
         <h1>
             Isso é só um pouco do que a gente vive
@@ -38,8 +37,6 @@
                     <div class="card">
                         <img src="{{ image_url }}" alt="Image from Google Drive" class="img-crop">
                         <div class="card-body">
-                            <h5 class="card-title">Image Title</h5>
-                            <p class="card-text">Some description about the image.</p>
                         </div>
                     </div>
                 </div>
